@@ -113,29 +113,21 @@ const CompleteProfileOne = () => {
       console.log(`user Details Id: ${userDetails_id}`);
 
       try {
-        await Userservices.userMediaGenderUpload(
+        const res = await Userservices.userMediaGenderUpload(
           userDetails_id,
           values.profileImage,
           values.userVideo,
           values.gender
-        ).then((res) => {
-          if (res.status === 200) {
-            alert(res.data.message);
-            navigate("/CompleteProfileTwo");
-          }
-          if (
-            res.status === 400 ||
-            res.status === 401 ||
-            res.status === 503 ||
-            res.status === 403
-          ) {
-            alert(res.data.Error[0].message);
-          }
-        });
-
-        // console.log(userMedia)
+        );
+        if (res.status === 200) {
+          alert(res.data.message);
+          navigate("/CompleteProfileTwo");
+        } else {
+          alert(res.data.Error[0].message);
+        }
       } catch (error) {
         console.log(error);
+        alert("Error submitting form");
       }
     }
   };
