@@ -69,9 +69,6 @@ const OtpVerified = () => {
   };
 
   const resendOnClicked = async (e) => {
-    setShow(true);
-    setTostBg(`bg-info`);
-
     const userId = user._id;
     const userEmail = user.email;
 
